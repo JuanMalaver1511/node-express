@@ -56,20 +56,15 @@ body {
   }
 
   .register{
-    margin-top: 10px;
-    width: 100%;
+    margin-left: 90px;
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
-    color: #fff;
+    color: black;
     cursor: pointer;
+    font-size: 12px;
   }
 
-  .register a{
-    text-decoration: none;
-    color: #fff;
-  }
   .imagen{
     margin-left: 80px;
     width: 100px;

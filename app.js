@@ -31,33 +31,25 @@ app.post('/register', async (req, res) => {
     try {
       const user = new User({ username, password });
       await user.save();
-      res.status(200).send('Registrado');
+      res.redirect('./index.html');
     } catch (error) {
       res.status(500).send('Error',error);
     }
   });
 
-  app.post('/authenticate', async (req, res) => {
-    try {
-      const { username, password } = req.body;
-      
-      const user = await User.findOne({ username });
-
-      if (!user) {
-        return res.status(404).send('El usuario no existe');
-      }
-  
-      const isPasswordCorrect = await user.isCorrectPassword(password);
-  
-      if (!isPasswordCorrect) {
-        return res.status(401).send('Usuario y/o contraseña incorrecta');
-      }
-      res.status(200).send('Usuario autenticado correctamente');
-      
-    } catch (error) {
-      res.status(500).send('Error al autenticar');
+  app.post('/authenticate', async (req, res) =>{
+    const { username, password } = req.body;
+    const user = await User.findOne({username});
+    if (!user) {
+      return res.status(404).send('El usuario no existe');
     }
-  });
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+    if (!isPasswordCorrect) {
+      return res.status(400).send('Contraseña incorrecta');
+    }
+    res.redirect('./Bienvenida.html');
+});
+
   
   
 
