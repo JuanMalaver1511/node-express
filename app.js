@@ -47,7 +47,7 @@ app.post('/register', async (req, res) => {
     if (!isPasswordCorrect) {
       return res.status(400).send('Contraseña incorrecta');
     }
-    res.redirect('./Bienvenida.html');
+    res.redirect('https://juanmalaver1511.github.io/comercio/');
 });
 
   
